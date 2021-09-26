@@ -7,6 +7,7 @@ import com.todo.service.TodoSortByName;
 
 public class TodoList {
 	private List<TodoItem> list;
+	public Object getList;
 
 	public TodoList() {
 		this.list = new ArrayList<TodoItem>();
@@ -58,6 +59,18 @@ public class TodoList {
 	public Boolean isDuplicate(String title) {
 		for (TodoItem item : list) {
 			if (title.equals(item.getTitle())) return true;
+		}
+		return false;
+	}
+
+	public int length() {
+		// TODO Auto-generated method stub
+		return list.size();
+	}
+
+	public boolean contains(String find) {
+		if(list.contains(find)) {
+			return true;
 		}
 		return false;
 	}

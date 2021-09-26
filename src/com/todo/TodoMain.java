@@ -21,6 +21,9 @@ public class TodoMain {
 			Menu.prompt();
 			isList = false;
 			String choice = sc.next();
+			
+	
+			
 			switch (choice) {
 
 			case "add":
@@ -64,6 +67,13 @@ public class TodoMain {
 			case "help":
 				Menu.displaymenu();
 				break;
+			
+			case "find":
+				String key = sc.next();
+				TodoUtil.find(l,key);
+				break;
+			
+				
 			
 			case "exit":
 				quit = true;
