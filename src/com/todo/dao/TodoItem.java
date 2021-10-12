@@ -9,18 +9,26 @@ public class TodoItem {
     private String title;
     private String desc;
     private String current_date;
-    private String due_date;//Á÷Á¢ ÀÔ·ÂÇØ¾ßÇÏ´Â ³¯Â¥ yyyy/mm/dd
+    private String due_date;//ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ø¾ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½Â¥ yyyy/mm/dd
+    private int id;
+    //private int is_completed;
 
-
-    public TodoItem(String title, String desc){
-        
-    	this.category = category; //Ä«Å×°í¸® ÇÊµå »ý¼ºÀÚ
-    	this.title=title;
+    public TodoItem(String cate, String title, String desc, String due_date){
+    	this.category=cate;
+        this.title=title;
         this.desc=desc;
-        
-        SimpleDateFormat f = new SimpleDateFormat("yyyy/MM/dd kk:mm:ss");
-        this.current_date=f.format(new Date());
-        this.due_date= due_date;
+        this.due_date=due_date;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        this.current_date=simpleDateFormat.format(new Date());
+    }
+    
+    public TodoItem(String cate, String title, String desc, String due_date, String current_date){
+    	this.category=cate;
+        this.title=title;
+        this.desc=desc;
+        this.due_date=due_date;
+        this.current_date=current_date;
+//        this.is_completed = is_completed;
     }
 
     public String category() {
@@ -65,6 +73,12 @@ public class TodoItem {
         this.due_date = due_date;
     }
     
+    public int getId() {
+    	return id;
+    }
+    
+   
+    
     @Override
     public String toString() {
 		return  " [" + category +"] "+title+" - "+ desc+" - "+due_date+" - "+ current_date;
@@ -74,4 +88,14 @@ public class TodoItem {
     public String toSaveString() {
     	return category+"##"+title +"##"+desc+"##"+due_date+"##"+current_date+"\n";
     }
+
+	public String getCategory() {
+		
+		return category;
+	}
+
+	public void setId(int index) {
+		// TODO Auto-generated method stub
+		this.id = index;
+	}
 }

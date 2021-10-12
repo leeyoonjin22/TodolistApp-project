@@ -11,20 +11,32 @@ public class TodoMain {
 	
 	public static void start() throws IOException {
 	
+//		Scanner sc = new Scanner(System.in);
+//		TodoList l = new TodoList();
+//		l.importData("todolist.txt");
 		Scanner sc = new Scanner(System.in);
 		TodoList l = new TodoList();
-		boolean isList = false;
+		
 		boolean quit = false;
-		TodoUtil.loadList(l, "todolist.txt");
+		String key;
+		int index;
+		//TodoUtil.loadList(l, "todolist.txt");
 		do {
 			
 			Menu.prompt();
-			isList = false;
 			String choice = sc.next();
 			
-	
-			
 			switch (choice) {
+			
+			case "find":
+				String keyword = sc.nextLine().trim();
+				TodoUtil.findList(l,keyword);
+				break;
+				
+			case "find_cate":
+				String cate = sc.nextLine().trim();
+				TodoUtil.findCateList(l,cate);
+				break;
 
 			case "add":
 				TodoUtil.createItem(l);
@@ -46,45 +58,39 @@ public class TodoMain {
 			case "ls_name_asc":
 				System.out.println("\n"+"You did press 'ls_name_asc' button");
 				l.sortByName();
-				System.out.println("Á¦¸ñ¼øÀ¸·Î Á¤·ÄÇÏ¿´½À´Ï´Ù.");
-				isList = true;
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
+				
 				break;
 
 			case "ls_name_desc":
 				System.out.println("\n"+"You did press 'ls_name_desc' button");
 				l.sortByName();
 				l.reverseList();
-				System.out.println("Á¦¸ñ ¿ª¼øÀ¸·Î Á¤·ÄÇÏ¿´½À´Ï´Ù.");
-				isList = true;
+				System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 				break;
 				
 			case "ls_date":
 				l.sortByDate();
-				System.out.println("³¯Â¥¼øÀ¸·Î Á¤·ÄÇÏ¿´½À´Ï´Ù.");
-				isList = true;
+				System.out.println("ï¿½ï¿½Â¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
+				break;
+			
+			case "ls_cate":
+				TodoUtil.listCateAll(l);
 				break;
 
 			case "help":
 				Menu.displaymenu();
 				break;
 			
-			case "find":
-				String key = sc.next();
-				TodoUtil.find(l,key);
-				break;
-			
-				
-			
 			case "exit":
 				quit = true;
 				break;
 
 			default:
-				System.out.println("Á¤È®ÇÑ ¸í·É¾î¸¦ ÀÔ·ÂÇÏ¼¼¿ä. (µµ¿ò¸» - help)");
+				System.out.println("ì •í™•í•œ ëª…ë ¹ì–´ë¥¼ ìž…ë ¥í•´ì£¼ì„¸ìš”. ëª…ë ¹ì–´ - help)");
 				break;
 			}
 			
-			if(isList) TodoUtil.listAll(l);
 		} while (!quit);
 		TodoUtil.saveList(l, "todolist.txt");
 	}
