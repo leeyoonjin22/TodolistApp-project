@@ -4,20 +4,24 @@ public class Menu {
     public static void displaymenu()
     { 
         System.out.println();
-        System.out.println("ToDoList  관리 명령어 사용법");
-        System.out.println("1. Add a new item ( add )");
-        System.out.println("2. Delete an existing item ( del )");
-        System.out.println("3. Update an item  ( edit )");
-        System.out.println("4. List all items ( ls )");
-        System.out.println("5. sort the list by name ( ls_name_asc )");
-        System.out.println("6. sort the list by name ( ls_name_desc )");
-        System.out.println("7. sort the list by date ( ls_date )");
-        System.out.println("8. find <키워드> ");
-        System.out.println("9. exit (Or press escape key to exit)");
-        System.out.println("Enter your choice >");
+        System.out.println("ToDoList ------");
+        System.out.println("Add a new item ( add )");
+        System.out.println("Delete an existing item ( del )");
+        System.out.println("Update an item  ( edit )");
+        System.out.println("List all items ( ls )");
+        System.out.println("List all category ( ls_cate )");
+        System.out.println("List all completed item ( ls_comp )");
+        System.out.println("List all uncompleted item ( ls_uncomp )");
+        System.out.println("List all items by title (ls_name_asc");
+        System.out.println("List all items by title reversely (ls_name_desc");
+        System.out.println("List all items by date (ls_date");
+        System.out.println("List all items by date reversely (ls_date_desc");
+        System.out.println("Find items that include <keyword> in the title, content (find Keyword)");
+        System.out.println("Find items that include <keyword> in the category (find_cate Keyword");
+        System.out.println("The end (exit)");
     }
     
     public static void prompt() {
-    	System.out.print("\nCommand > ");
+    	System.out.print("\n Command > ");
     }
 }

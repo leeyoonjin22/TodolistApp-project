@@ -11,16 +11,15 @@ public class TodoMain {
 	
 	public static void start() throws IOException {
 	
-//		Scanner sc = new Scanner(System.in);
-//		TodoList l = new TodoList();
-//		l.importData("todolist.txt");
+
 		Scanner sc = new Scanner(System.in);
 		TodoList l = new TodoList();
 		
 		boolean quit = false;
-		String key;
+		String keyword;
 		int index;
-		//TodoUtil.loadList(l, "todolist.txt");
+		Menu.displaymenu();
+		
 		do {
 			
 			Menu.prompt();
@@ -28,16 +27,6 @@ public class TodoMain {
 			
 			switch (choice) {
 			
-			case "find":
-				String keyword = sc.nextLine().trim();
-				TodoUtil.findList(l,keyword);
-				break;
-				
-			case "find_cate":
-				String cate = sc.nextLine().trim();
-				TodoUtil.findCateList(l,cate);
-				break;
-
 			case "add":
 				TodoUtil.createItem(l);
 				break;
@@ -49,35 +38,63 @@ public class TodoMain {
 			case "edit":
 				TodoUtil.updateItem(l);
 				break;
+			case "comp" :
+				index = sc.nextInt();
+				TodoUtil.completeItem(l,index);
+				break;
+				
+			case "del_comp":
+				index = sc.nextInt();
+				TodoUtil.completeDelItem(l,index);
+				break;
 				
 			case "ls":
-				System.out.println("\n"+"You did press 'ls' button");
 				TodoUtil.listAll(l);
 				break;
-
-			case "ls_name_asc":
-				System.out.println("\n"+"You did press 'ls_name_asc' button");
-				l.sortByName();
-				System.out.println("��������� �����Ͽ����ϴ�.");
 				
-				break;
-
-			case "ls_name_desc":
-				System.out.println("\n"+"You did press 'ls_name_desc' button");
-				l.sortByName();
-				l.reverseList();
-				System.out.println("���� �������� �����Ͽ����ϴ�.");
-				break;
-				
-			case "ls_date":
-				l.sortByDate();
-				System.out.println("��¥������ �����Ͽ����ϴ�.");
-				break;
-			
 			case "ls_cate":
 				TodoUtil.listCateAll(l);
 				break;
+				
+			case "ls_comp":
+				TodoUtil.listAll(l,1);
+				break;
+				
+			case "ls_uncomp":
+				TodoUtil.listAll(l,0);
+				break;
+				
 
+			case "ls_name_asc":
+				TodoUtil.listAll(l,"title",1);
+				System.out.println("제목순으로 정렬완료 ");
+				break;
+
+			case "ls_name_desc":
+				TodoUtil.listAll(l,"title",0);
+				System.out.println("제목역순 으로 정렬완료 ");
+				break;
+				
+			case "ls_date":
+				TodoUtil.listAll(l,"due_date",1);
+				System.out.println("날짜순으로 정렬완료 ");
+				break;
+				
+			case "ls_date_desc":
+				TodoUtil.listAll(l,"due_date",0);
+				System.out.println("날짜역순으로 정렬완료 ");
+				break;
+			
+			case "find":
+				keyword = sc.next().trim();
+				TodoUtil.findList(l,keyword);
+				break;
+				
+			case "find_cate":
+				keyword = sc.next();
+				TodoUtil.findCateList(l,keyword);
+				break;	
+			
 			case "help":
 				Menu.displaymenu();
 				break;
@@ -92,6 +109,6 @@ public class TodoMain {
 			}
 			
 		} while (!quit);
-		TodoUtil.saveList(l, "todolist.txt");
+		//TodoUtil.saveList(l, "todolist.txt");
 	}
 }

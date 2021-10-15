@@ -5,13 +5,15 @@ import java.util.Date;
 
 public class TodoItem {
 	
+	private String place; //장소필드 추가
+	private String power; //난이도 필드 추가(1~5)
 	private String category;
     private String title;
     private String desc;
     private String current_date;
-    private String due_date;//���� �Է��ؾ��ϴ� ��¥ yyyy/mm/dd
+    private String due_date;// 
     private int id;
-    //private int is_completed;
+    private int is_completed;
 
     public TodoItem(String cate, String title, String desc, String due_date){
     	this.category=cate;
@@ -22,16 +24,36 @@ public class TodoItem {
         this.current_date=simpleDateFormat.format(new Date());
     }
     
-    public TodoItem(String cate, String title, String desc, String due_date, String current_date){
+    public TodoItem(String cate, String title, String desc, String due_date, String current_date,int is_completed, String place, String power){
     	this.category=cate;
         this.title=title;
         this.desc=desc;
         this.due_date=due_date;
         this.current_date=current_date;
-//        this.is_completed = is_completed;
+        this.is_completed = is_completed;
+        this.place = place;
+        this.power = power;
+        
     }
 
-    public String category() {
+    public String getPlace() {
+    	return place;
+    }
+    
+    public void setPlace(String place) {
+    	this.place = place;
+    
+    }
+    
+    public String getPower() {
+    	return power;
+    }
+    
+    public void setPower(String power) {
+    	this.power = power;
+    }
+    
+    public String getCategory() {
         return category;
     }
 
@@ -76,26 +98,26 @@ public class TodoItem {
     public int getId() {
     	return id;
     }
+    public void setId(int id) {
+    	this.id = id;
+    }
     
    
     
     @Override
     public String toString() {
-		return  " [" + category +"] "+title+" - "+ desc+" - "+due_date+" - "+ current_date;
+    	if(is_completed==1) {
+		return id +". [" + category +"] "+title+" [V] - "+ desc+" - "+due_date+" - "+ current_date+" - "+place+" - " + power;
+    	}
+    	else {
+    		return id +". [" + category +"] "+title+" - "+ desc+" - "+due_date+" - "+ current_date +" - " +place+" - "+ power;
+    	}
     	
     }
     
     public String toSaveString() {
-    	return category+"##"+title +"##"+desc+"##"+due_date+"##"+current_date+"\n";
+    	return category+"##"+title +"##"+desc+"##"+due_date+"##"+current_date+"##"+is_completed+"##"+place+"##"+power+"\n";
     }
 
-	public String getCategory() {
-		
-		return category;
-	}
-
-	public void setId(int index) {
-		// TODO Auto-generated method stub
-		this.id = index;
-	}
+	
 }
