@@ -194,8 +194,22 @@ public static void updateItem(TodoList l) {
 		}
 	}
 
-	public static void mulcompleteItem(TodoList l, int count) {
-		l.mulcompleteItem(l, count);
+	public static void mulcompleteItem(TodoList l,int count) {
+	Scanner sc = new Scanner(System.in);
+	int arr[] = new int[count];
+	System.out.println("\n 완료체크 할 아이디 입력 : ");
+	for(int i=0; i<count; i++) {
+		arr[i] = sc.nextInt();
+	}
+	for(int j=0; j<count; j++) {
+		for(TodoItem t : l.getList()) {
+			if(t.getId()==arr[j]) {
+				completeItem(l, arr[j]);
+				break;
+			}
+		}
+	}
+	System.out.println("모두 완료체크되었습니다.");
 	}
 	
 	public static void completeItem(TodoList l, int index) {
@@ -210,9 +224,27 @@ public static void updateItem(TodoList l) {
 		
 	}
 	
-	public static void mulcompleteDelItem(TodoList l, int count) {
-		l.mulcompleteDelItem(l,count);
+
+	public static void mulcompleteDelItem(TodoList l,int count) {
+	Scanner sc = new Scanner(System.in);
+	int arr[] = new int[count];
+	System.out.println("\n 완료체크해 할 아이디 입력 : ");
+	for(int i=0; i<count; i++) {
+		arr[i] = sc.nextInt();
 	}
+	for(int j=0; j<count; j++) {
+		for(TodoItem t : l.getList()) {
+			if(t.getId()==arr[j]) {
+				completeDelItem(l, arr[j]);
+				break;
+			}
+		}
+	}
+	System.out.println("모두 체크가 해제 되었습니다.");
+	}
+	
+	
+	
 	public static void completeDelItem(TodoList l, int index) {
 		System.out.println("[할 일 완료체크 취소]");
 		

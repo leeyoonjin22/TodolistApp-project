@@ -85,27 +85,7 @@ public class TodoList {
 		return count;
 	}
 	
-	public void mulcompleteItem(TodoList l,int count) {
-		//여러개 한꺼번에 완료체크하기
-	Scanner sc = new Scanner(System.in);
-		int arr[] = new int[count];
-		System.out.println("\n 완료체크할 아이디 입력 : ");
-		for(int i=0; i<count; i++) {
-			arr[i] = sc.nextInt();
-		}
-		
-		for(int j=0; j<count; j++) {
-			for(TodoItem t : l.getList()) {
-				if(t.getId()==arr[j]) {
-					t.setIs_completed(1);
-					break;
-				}
-			}
-		}
-		
-		System.out.println("모두 완료 체크하였습니다.");
-		
-	}
+	
 	
 	public int completeItem(int index) {
 		String sql = "update list set is_completed =1"
@@ -123,26 +103,7 @@ public class TodoList {
 		}
 		return count;		
 	}
-	
-	public void mulcompleteDelItem(TodoList l, int count) {
-		Scanner sc = new Scanner(System.in);
-		int arr[] = new int[count];
-		System.out.println("\n 완료체크 해제 할 아이디 입력 : ");
-		for(int i=0; i<count; i++) {
-			arr[i] = sc.nextInt();
-		}
-		
-		for(int j=0; j<count; j++) {
-			for(TodoItem t : l.getList()) {
-				if(t.getId()==arr[j]) {
-					t.setIs_completed(0);
-					break;
-				}
-			}
-		}
-		
-		System.out.println("모두 완료 체크하였습니다.");
-	}
+
 	
 	public int completeDelItem(int index) {
 		String sql = "update list set is_completed =0"

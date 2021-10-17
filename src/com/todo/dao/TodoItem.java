@@ -119,12 +119,11 @@ public class TodoItem {
     	return category+"##"+title +"##"+desc+"##"+due_date+"##"+current_date+"##"+is_completed+"##"+place+"##"+power+"\n";
     }
 
-	public int getIs_completed() {
+    public int getIs_completed() {
 		return is_completed;
 	}
 
 	public void setIs_completed(int is_completed) {
-		// TODO Auto-generated method stub
 		this.is_completed = is_completed;
 	}
 
