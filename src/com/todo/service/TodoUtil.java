@@ -9,6 +9,11 @@ import java.io.Writer;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
 import com.todo.dao.TodoItem;
 import com.todo.dao.TodoList;
 
@@ -229,12 +234,16 @@ public static void updateItem(TodoList l) {
 
 	public static void findList(TodoList l,String keyword) {
 		int count=0;
-		for (TodoItem item : l.getListCategory(keyword)) {
+		for (TodoItem item : l.getList(keyword)) {
 			System.out.println(item.toString());
 			count++;
 			}
+		if(count==0) {
+			System.out.println("입력키워드를 포함하는 아이템이 없습니다.");
+		}
+		else {
 		System.out.printf("총 %d개의 일을 찾았습니다. \n", count);
-		
+		}
 		}
 	
 	public static void findCateList(TodoList l, String keyword) {
@@ -243,9 +252,63 @@ public static void updateItem(TodoList l) {
 			System.out.println(item.toString());
 			count++;
 		}
-		System.out.printf("총 %d개의 일을 찾았습니다. \n", count);
+		if(count==0) {
+			System.out.println("입력키워드를 포함하는 아이템이 없습니다.");
+		}
+		else {
+		System.out.printf("총 %d개의 카테고리를 찾았습니다. \n", count);
+		}
 	}
+
+	//json형식으로 파일 저장기
+	public static void Jsonsave(TodoList l) {
+		// TODO Auto-generated method stub
+	Scanner sc = new Scanner(System.in);	
+	System.out.println("\n + ------JSON파일저장------");
+		
+		System.out.println( "저장할 파일 이름 : ");
+		String fn = sc.nextLine();
+		Gson gson = new Gson();
+		String jsonstr = gson.toJson(l.getList());
+		
+		try {
+			FileWriter fw = new FileWriter(fn);
+			fw.write(jsonstr);
+			fw.close();
+			System.out.println("파일에 저장되었습니다!");
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+//파일에서 json형식으로 불러오기 기
+	public static void Jsonload(TodoList l) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("\n ---------JSON 파일 불러오기---------");
+		System.out.print("로딩할 파일 이름 : ");
+		String fn = sc.nextLine();
+		String jsonstr=null;
+		Gson gson = new Gson();
+		try {
+			
+			BufferedReader br = new BufferedReader(new FileReader(fn));
+			jsonstr = br.readLine();
+			br.close();
+			
+		}catch(FileNotFoundException e) {
+			System.out.println(fn + "파일이 존재하지 않습니다. ");
+			return;
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+		System.out.println("파일에서 데이터를 가져왔습니다!");
+		
+	}
+		
+	}	
+	
 		
 
 	
-}
+

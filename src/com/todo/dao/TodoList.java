@@ -227,7 +227,7 @@ public class TodoList {
 				int id = rs.getInt("id");
 				String category = rs.getString("category");
 				String title = rs.getString("title");
-				String description = rs.getString("memo");
+				String description = rs.getString("desc");
 				String due_date = rs.getString("due_date");
 				String current_date = rs.getString("current_date");
 				int is_completed = rs.getInt("is_completed");
@@ -245,14 +245,14 @@ public class TodoList {
 		
 	}
 	public ArrayList<TodoItem> getOrderedList(String orderby, int ordering) {
-		ArrayList<TodoItem> list = new ArrayList<TodoItem>();
-		Statement stmt;
+		ArrayList<TodoItem> list = new ArrayList<>();
+		String sql = "SELECT * FROM list ORDER BY "+ orderby;
+		if (ordering == 0) {
+			sql += " desc";
+		}
 		try {
-			stmt = conn.createStatement();
-			String sql = "SELECT * FROM list ORDER BY "+ orderby;
-			if (ordering == 0)
-				sql += " desc";
-			ResultSet rs = stmt.executeQuery(sql);
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql+";");
 			while(rs.next()) {
 				int id = rs.getInt("id");
 				String category = rs.getString("category");
@@ -265,6 +265,7 @@ public class TodoList {
 				String power = rs.getString("power");
 				TodoItem t = new TodoItem(category, title, desc, due_date, current_date,is_completed, place, power);
 				t.setId(id);
+				t.setCurrent_date(current_date);
 				list.add(t);
 			}
 			stmt.close();

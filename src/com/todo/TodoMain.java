@@ -94,6 +94,13 @@ public class TodoMain {
 				keyword = sc.next();
 				TodoUtil.findCateList(l,keyword);
 				break;	
+				
+			case "go_json":
+				TodoUtil.Jsonsave(l);
+				break;
+				
+			case "com_json":
+				TodoUtil.Jsonload(l);
 			
 			case "help":
 				Menu.displaymenu();
