@@ -14,55 +14,55 @@ import com.todo.dao.TodoList;
 
 public class TodoUtil {
 	
-//	public static void saveList(TodoList l, String filename) { //list�� ������ ���Ͽ� ����
-//		/*FileWriter ���*/
-//		
-//		try {
-//			FileWriter fw = new FileWriter(filename);
-//			//todoItem�� tosaveStrsing �޼ҵ� ����ؼ� ���Ͽ� ����
-//			for(TodoItem item : l.getList()) {
-//			fw.write(item.toSaveString());
-//			}
-//			
-//			fw.close();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		
-//	}
+	public static void saveList(TodoList l, String filename) { //list�� ������ ���Ͽ� ����
+		/*FileWriter ���*/
+		
+		try {
+			FileWriter fw = new FileWriter(filename);
+			//todoItem�� tosaveStrsing �޼ҵ� ����ؼ� ���Ͽ� ����
+			for(TodoItem item : l.getList()) {
+			fw.write(item.toSaveString());
+			}
+			
+			fw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
 	
-//	public static void loadList(TodoList l, String filename) throws IOException {
-//		/*BufferedReader, FileReader, String Tokenizer ���*/
-//		try {
-//			BufferedReader bf = new BufferedReader(new FileReader(filename));
-//			String line;
-//			StringTokenizer cut;
-//			while((line= bf.readLine())!=null) {
-//				cut = new StringTokenizer(line,"##");
-//				String category = cut.nextToken();
-//				String title = cut.nextToken();
-//				String desc = cut.nextToken();
-//				String due_date = cut.nextToken();
-//				String current_date = cut.nextToken();  
-//				
-//				TodoItem set = new TodoItem(title, desc,category,due_date);
-//				set.setCategory(category);
-//				set.setCurrent_date(current_date);
-//				set.setDesc(desc);
-//				set.setDue_date(due_date);
-//				set.setTitle(title);
-//				l.addItem(set);
-//			}
-//			bf.close();
-//		}catch(FileNotFoundException e ) {
-//			e.printStackTrace();
-//		}catch(IOException e ) {
-//			e.printStackTrace();
-//		}
-//		
-//	}
+	public static void loadList(TodoList l, String filename) throws IOException {
+		/*BufferedReader, FileReader, String Tokenizer ���*/
+		try {
+			BufferedReader bf = new BufferedReader(new FileReader(filename));
+			String line;
+			StringTokenizer cut;
+			while((line= bf.readLine())!=null) {
+				cut = new StringTokenizer(line,"##");
+				String category = cut.nextToken();
+				String title = cut.nextToken();
+				String desc = cut.nextToken();
+				String due_date = cut.nextToken();
+				String current_date = cut.nextToken();  
+				
+				TodoItem set = new TodoItem(title, desc,category,due_date);
+				set.setCategory(category);
+				set.setCurrent_date(current_date);
+				set.setDesc(desc);
+				set.setDue_date(due_date);
+				set.setTitle(title);
+				l.addItem(set);
+			}
+			bf.close();
+		}catch(FileNotFoundException e ) {
+			e.printStackTrace();
+		}catch(IOException e ) {
+			e.printStackTrace();
+		}
+		
+	}
 	
 	
 public static void createItem(TodoList l) {
@@ -79,10 +79,10 @@ public static void createItem(TodoList l) {
 		
 		System.out.print("제목 > ");
 		title = sc.next().trim();
-		if (l.isDuplicate(title)) {
-			System.out.println("- 동일한 제목의 일이 있습니다 !");
-			return;
-		}
+//		if (l.isDuplicate(title)) {
+//			System.out.println("- 동일한 제목의 일이 있습니다 !");
+//			return;
+//		}
 		
 		System.out.print("내용 > ");
 		desc = sd.nextLine().trim();
@@ -142,10 +142,10 @@ public static void updateItem(TodoList l) {
 
 		System.out.print("새로운 일의 제목 > ");
 		new_title = sc.next().trim();
-		if (l.isDuplicate(new_title)) {
-			System.out.println("- 동일한 제목의 일이 있습니다 !");
-			return;
-		}
+//		if (l.isDuplicate(new_title)) {
+//			System.out.println("- 동일한 제목의 일이 있습니다 !");
+//			return;
+//		}
 		
 		System.out.print("새로운 일의 내용 > ");
 		new_desc = sd.nextLine().trim();

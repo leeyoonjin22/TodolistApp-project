@@ -107,10 +107,10 @@ public class TodoItem {
     @Override
     public String toString() {
     	if(is_completed==1) {
-		return id +". [" + category +"] "+title+" [V] - "+ desc+" - "+due_date+" - "+ current_date+" - "+place+" - " + power;
+		return id +" [" + category +"] "+title+" [V] - "+ desc+" - "+due_date+" - "+ current_date+" - "+place+" - " + power;
     	}
     	else {
-    		return id +". [" + category +"] "+title+" - "+ desc+" - "+due_date+" - "+ current_date +" - " +place+" - "+ power;
+    		return id +" [" + category +"] "+title+" - "+ desc+" - "+due_date+" - "+ current_date +" - " +place+" - "+ power;
     	}
     	
     }
@@ -118,6 +118,10 @@ public class TodoItem {
     public String toSaveString() {
     	return category+"##"+title +"##"+desc+"##"+due_date+"##"+current_date+"##"+is_completed+"##"+place+"##"+power+"\n";
     }
+
+	public int getIs_completed() {
+		return is_completed;
+	}
 
 	
 }

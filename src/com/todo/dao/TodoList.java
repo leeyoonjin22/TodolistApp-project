@@ -14,17 +14,19 @@ import com.todo.service.TodoSortByDate;
 import com.todo.service.TodoSortByName;
 
 public class TodoList {
+	private List<TodoItem> l;
 	Connection conn;
 	
 
 	public TodoList() {
 		this.conn = DbConnect.getConnection();
+		this.l = new ArrayList<TodoItem>();
 	}
 
 	public int addItem(TodoItem t) {
 		String sql = "insert into list (title, desc, category, current_date, due_date, place, power)"
 				+ " values (?,?,?,?,?,?,?);";
-		PreparedStatement pstmt =null;
+		PreparedStatement pstmt;
 		int count = 0;
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -45,10 +47,10 @@ public class TodoList {
 
 	public int deleteItem(int index) {
 		String sql = "delete from list where id=?;";
-		PreparedStatement pstmt;
+		
 		int count =0;
 		try {
-			pstmt = conn.prepareStatement(sql);
+			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, index);
 			count = pstmt.executeUpdate();
 			pstmt.close();
@@ -60,7 +62,7 @@ public class TodoList {
 	}
 
 	public int updateItem(TodoItem t) {
-		String sql = "update list set title=?, desc=?, category=?, current_date=? due_date=? place=? power=? "
+		String sql = "update list set title=?, desc=?, category=?, current_date=?, due_date=?,is_completed=?, place=?, power=? "
 				+ "where id =?;";
 		PreparedStatement pstmt;
 		int count =0;
@@ -71,9 +73,10 @@ public class TodoList {
 			pstmt.setString(3, t.getCategory());
 			pstmt.setString(4, t.getCurrent_date());
 			pstmt.setString(5, t.getDue_date());
-			pstmt.setString(6, t.getPlace());
-			pstmt.setString(7, t.getPower());
-			pstmt.setInt(8, t.getId());
+			pstmt.setInt(6, t.getIs_completed());
+			pstmt.setString(7, t.getPlace());
+			pstmt.setString(8, t.getPower());
+			pstmt.setInt(9, t.getId());
 			count = pstmt.executeUpdate();
 			pstmt.close();
 		}catch(SQLException e) {
@@ -107,7 +110,7 @@ public class TodoList {
 			String sql = "SELECT * FROM list";
 			ResultSet rs = stmt.executeQuery(sql);
 			while(rs.next()) {
-				int id = rs.getInt("id");
+				int id = rs.getInt("Id");
 				String category = rs.getString("category");
 				String title = rs.getString("title");
 				String desc = rs.getString("desc");
@@ -136,13 +139,13 @@ public class TodoList {
 		PreparedStatement pstmt;
 		keyword = "%"+keyword+"%";
 		try {
-			String sql = "SELECT * FROM list WHERE title like ? OR memo like ?";
+			String sql = "SELECT * FROM list WHERE title like ? OR desc like ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, keyword);
 			pstmt.setString(2, keyword);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
-				int id = rs.getInt("id");
+				int id = rs.getInt("Id");
 				String category = rs.getString("category");
 				String title = rs.getString("title");
 				String desc = rs.getString("desc");
@@ -287,12 +290,12 @@ public class TodoList {
 		return count;
 	}
 	
-	public int getCount(int is_completed) {
+	public int getCount(int getIs_completed) {
 		Statement stmt;
 		int count = 0;
 		try {
 			stmt = conn.createStatement();
-			String sql = "SELECT count(id) FROM list WHERE is_completed = " + is_completed + ";";
+			String sql = "SELECT count(id) FROM list WHERE is_completed = " + getIs_completed + ";";
 			ResultSet rs = stmt.executeQuery(sql);
 			rs.next();
 			count = rs.getInt("count(id)");
