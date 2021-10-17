@@ -18,6 +18,9 @@ public class Menu {
         System.out.println("List all items by date reversely (ls_date_desc)마감일 날짜느린");
         System.out.println("Find items that include <keyword> in the title, content (find Keyword)키워드찾기_내용 ");
         System.out.println("Find items that include <keyword> in the category (find_cate Keyword)키워드찾기_카테고리 ");
+        System.out.println("Make multi Delete the items (mulDel 한꺼번에 삭제  ");
+        System.out.println("Make multi complete check items (mulcom) 한꺼번에 완료체크 ");
+        System.out.println("Make multi complete uncheck items (mulcomDel) 한꺼번에 완료체크해제 ");
         System.out.println("Load Json (com_json) JSon불러오기  ");
         System.out.println("Save File to Json (go_json) Json형식으로 저장하기 " );
 

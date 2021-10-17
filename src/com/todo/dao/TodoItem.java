@@ -123,5 +123,10 @@ public class TodoItem {
 		return is_completed;
 	}
 
+	public void setIs_completed(int is_completed) {
+		// TODO Auto-generated method stub
+		this.is_completed = is_completed;
+	}
+
 	
 }

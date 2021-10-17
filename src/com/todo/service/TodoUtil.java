@@ -116,6 +116,20 @@ public static void createItem(TodoList l) {
 			System.out.println("추가되지 않았습니다.");
 		}
 	}
+
+	public static void mulDeleteItem(TodoList l,int count) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("삭제하고자 하는 목록의 아이디를 입력해주세요 ");
+		int num[] = new int[count];
+		for(int i=0; i<count; i++) {
+			num[i] = sc.nextInt();
+		}
+		for(int j=0; j<count; j++) {
+			l.deleteItem(num[j]);
+		}
+		
+		System.out.println("한꺼번에 모두 삭제되었습니다! ");
+	}
 	public static void deleteItem(TodoList l) {
 		
 		Scanner sc = new Scanner(System.in);
@@ -180,10 +194,14 @@ public static void updateItem(TodoList l) {
 		}
 	}
 
+	public static void mulcompleteItem(TodoList l, int count) {
+		l.mulcompleteItem(l, count);
+	}
+	
 	public static void completeItem(TodoList l, int index) {
 		System.out.println("[할 일 완료체크]");
 		
-		if(l.completeDelItem(index)>0) {
+		if(l.completeItem(index)>0) {
 			System.out.println("체크되었습니다. ");
 		}
 		else {
@@ -192,6 +210,9 @@ public static void updateItem(TodoList l) {
 		
 	}
 	
+	public static void mulcompleteDelItem(TodoList l, int count) {
+		l.mulcompleteDelItem(l,count);
+	}
 	public static void completeDelItem(TodoList l, int index) {
 		System.out.println("[할 일 완료체크 취소]");
 		

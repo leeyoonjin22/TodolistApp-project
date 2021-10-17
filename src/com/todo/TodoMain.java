@@ -38,6 +38,7 @@ public class TodoMain {
 			case "edit":
 				TodoUtil.updateItem(l);
 				break;
+				
 			case "comp" :
 				index = sc.nextInt();
 				TodoUtil.completeItem(l,index);
@@ -94,6 +95,24 @@ public class TodoMain {
 				keyword = sc.next();
 				TodoUtil.findCateList(l,keyword);
 				break;	
+			
+			case "mulDel" :
+				System.out.print("한꺼번에 삭제할 목록의 개수 :");
+				index = sc.nextInt();
+				TodoUtil.mulDeleteItem(l,index);
+				break;
+				
+			case "mulcom" :
+				System.out.print("한꺼번에 완료체크할 목록개수: ");
+				index = sc.nextInt();
+				TodoUtil.mulcompleteItem(l, index);
+				break;
+				
+			case "mulcomDel" :
+				System.out.print("한꺼번에 완료체크 해제할 목록개수: ");
+				index = sc.nextInt();
+				TodoUtil.mulcompleteDelItem(l, index);
+				break;
 				
 			case "go_json":
 				TodoUtil.Jsonsave(l);
